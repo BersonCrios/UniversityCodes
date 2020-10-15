@@ -1,0 +1,100 @@
+page-home {
+  .pontuacao{
+    float: right;
+    color: #4501d1;
+    font-weight: bold;
+    margin-right: 6rem;
+    // margin-bottom: 7rem;
+  }
+  .vida{
+    float: left;
+    color: red;
+    font-weight: bold;
+    margin-left: 6rem;
+    // margin-bottom: 7rem;
+  }
+  .botaoChute{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 2rem;
+  }
+  .dicaDaPalavra{
+    position: relative;
+    font-size: 3rem;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    z-index: 999;
+    // margin-bottom: 7rem;
+  }
+
+  ion-input{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #4501d1;
+    width: 20rem;
+    // margin-left: 26rem;
+    // margin-right: 26rem;
+    border-bottom: 1px solid #000;
+  }
+
+  ion-content{
+    background-image: url("../../assets/imgs/fundoforca.png");
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    background-size: 100%;
+    //background-color: #005f6b!important;
+  }
+  ion-card{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    }
+
+    .oncaUm{
+      position: fixed;
+      width: 20%;
+      right: 2.5rem;
+      bottom: 4rem;
+      visibility: visible ;
+    }
+
+    .oncaDois{
+      position: fixed;
+      width: 17%;
+      right: 6rem;
+      bottom: 8rem;
+      visibility: hidden ;
+      rotate: 20px;
+    }
+
+    .oncaTres{
+      position: fixed;
+      width: 17%;
+      right: 7rem;
+      bottom: 16rem;
+      transform: rotate(-20deg);
+      visibility: hidden  ;
+    }
+    .rugido{
+      position: absolute;
+      width: 10%;
+      right: 16rem;
+      bottom: 26rem;
+      visibility: hidden ;
+    }
+
+    .indio{
+      position: fixed;
+      width: 7%;
+      right: 19rem;
+      bottom: 74%;
+      // visibility: visible ;
+    }
+}

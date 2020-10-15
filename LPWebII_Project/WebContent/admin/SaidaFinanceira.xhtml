@@ -1,0 +1,138 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+
+	<ui:define name="conteudo">
+		<f:view>
+			<center>
+				<h:form id="form">
+					<p:growl id="growl" showDetail="false" sticky="true" life="5000" />
+
+
+					<p:panel id="panel">
+						<h3 class="titulo">Saídas Finânceiras</h3>
+						<p:panelGrid columns="2" cellpadding="5">
+
+							<p:inputText
+								value="#{saidaFinanceiraController.entity.numeroDocumento}"
+								placeholder="Número do Documento" styleClass="entradaDeDados" />
+
+							<p:calendar id="dataDoDocumento"
+								value="#{saidaFinanceiraController.entity.dataDoDocumento}"
+								locale="br" navigator="true" pattern="dd/MM/yyyy"
+								placeholder="Data do Documento" />
+
+							<p:calendar id="dataOrdemDoPagamento"
+								value="#{saidaFinanceiraController.entity.dataOrdemDoPagamento}"
+								locale="br" navigator="true" pattern="dd/MM/yyyy"
+								placeholder="Data de ordem de Pagamento" />
+
+							<p:calendar id="dataDoPagamento"
+								value="#{saidaFinanceiraController.entity.dataPagamento}"
+								locale="br" navigator="true" pattern="dd/MM/yyyy"
+								placeholder="Data do Pagamento" />
+
+							<p:inputNumber value="#{saidaFinanceiraController.entity.valor}"
+								placeholder="Valor" styleClass="entradaDeDados" />
+
+
+							<p:selectOneMenu id="TipoRecurso"
+								value="#{saidaFinanceiraController.entity.recurso}"
+								styleClass="entradaDeDados">
+								<f:selectItem itemLabel="Tipo de Recurso" itemValue="" />
+								<f:selectItems value="#{saidaFinanceiraController.tipoRecurso}"
+									var="tr" itemValue="#{tr}" itemLabel="#{tr.nome}" />
+							</p:selectOneMenu>
+
+							<p:selectOneMenu
+								value="#{saidaFinanceiraController.entity.fornecedor}">
+								<f:converter converterId="fornecedorConverter" />
+								<f:selectItem itemLabel="Fornecedor" />
+								<f:selectItems
+									value="#{saidaFinanceiraController.listaFornecedor}" var="f"
+									itemLabel="#{f.nome}" itemValue="#{f}" />
+							</p:selectOneMenu>
+						</p:panelGrid>
+
+						<br />
+
+						<p:commandButton value="Inserir" icon="fa fa-floppy-o"
+							actionListener="#{saidaFinanceiraController.insert}"
+							disabled="#{saidaFinanceiraController.entity.id != null}"
+							process="panel" update="form" styleClass="primary" />
+
+						<p:commandButton value="Alterar"
+							actionListener="#{saidaFinanceiraController.update}"
+							icon="fa fa-pencil"
+							disabled="#{saidaFinanceiraController.entity.id == null}"
+							process="panel" update="form" styleClass="default" />
+
+						<p:commandButton value="Excluir"
+							actionListener="#{saidaFinanceiraController.delete}"
+							icon="fa fa-trash"
+							disabled="#{saidaFinanceiraController.entity.id == null}"
+							process="panel" update="form" styleClass="danger" />
+
+						<p:commandButton value="Limpar" icon="fa fa-eraser"
+							actionListener="#{saidaFinanceiraController.clean}"
+							process="panel" update="form" styleClass="default" />
+
+					</p:panel>
+
+
+
+					<p:dataTable id="dataTable"
+						value="#{saidaFinanceiraController.listaSaidaFinanceira}"
+						var="saidaFinanceira" widgetVar="dataTableWV" reflow="true"
+						style="width:60rem;margin-top:5rem;">
+
+						<p:column>
+							<f:facet name="header">Número do Documento</f:facet>
+								#{saidaFinanceira.numeroDocumento}
+						</p:column>
+
+						<p:column headerText="Data do documento">
+							<h:outputText value="#{saidaFinanceira.dataDocumentoFormatada}" />
+						</p:column>
+						
+						<p:column headerText="Data da ordem de Pagamento">
+							<h:outputText value="#{saidaFinanceira.dataOrdemPagamentoFormatada}" />
+						</p:column>
+						
+						<p:column headerText="Data do Pagamento">
+							<h:outputText value="#{saidaFinanceira.dataPagamentoFormatada}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Valor</f:facet>
+								#{saidaFinanceira.valor}
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Tipo de Recurso usado</f:facet>
+								#{saidaFinanceira.recurso.nome}
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Fornecedor</f:facet>
+								#{saidaFinanceira.fornecedor.nome}
+						</p:column>
+						<p:column>
+							<f:facet name="header">Gerenciar: </f:facet>
+							<p:commandButton value="Editar" styleClass="primary"
+								update="form" icon="fa fa-pencil-square-o">
+								<f:setPropertyActionListener
+									target="#{saidaFinanceiraController.entity}"
+									value="#{saidaFinanceira}" />
+							</p:commandButton>
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+			</center>
+		</f:view>
+
+	</ui:define>
+</ui:composition>

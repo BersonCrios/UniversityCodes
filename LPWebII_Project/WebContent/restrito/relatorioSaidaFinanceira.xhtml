@@ -1,0 +1,86 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+
+	<ui:define name="conteudo">
+
+		<f:view>
+			<center>
+
+				<h:form id="form">
+					<p:growl id="growl" showDetail="false" sticky="false" life="5000" />
+
+
+					<p:panel id="panel">
+
+						<h2 style="padding-top: 5rem; text-transform: uppercase;">Relatório
+							de Saídas Financeiras</h2>
+
+
+						<div style="padding-top: 4rem;">
+							<p:commandButton value="Visualizar" icon=""
+								actionListener="#{relatorioSaidasFinanceirasController.imprimir}" />
+						</div>
+
+
+						<div style="padding-top: 1rem;">
+							<h:commandLink>
+								<p:fileDownload
+									value="#{saidaFinanceiraController.relatorio.pdf}" />
+								<p:graphicImage library="images" name="pdf.png"
+									title="Imprimir PDF" />
+							</h:commandLink>
+						</div>
+
+
+
+						<p:dataTable id="dataTable"
+							value="#{saidaFinanceiraController.listaSaidaFinanceira}"
+							var="saidaFinanceira" widgetVar="dataTableWV" reflow="true"
+							style="width:60rem;margin-top:5rem;">
+
+							<p:column>
+								<f:facet name="header">Número do Documento</f:facet>
+								#{saidaFinanceira.numeroDocumento}
+						</p:column>
+
+							<p:column headerText="Data do documento">
+								<h:outputText value="#{saidaFinanceira.dataDocumentoFormatada}" />
+							</p:column>
+
+							<p:column headerText="Data da ordem de Pagamento">
+								<h:outputText
+									value="#{saidaFinanceira.dataOrdemPagamentoFormatada}" />
+							</p:column>
+
+							<p:column headerText="Data do Pagamento">
+								<h:outputText value="#{saidaFinanceira.dataPagamentoFormatada}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">Valor</f:facet>
+								#{saidaFinanceira.valor}
+						</p:column>
+
+							<p:column>
+								<f:facet name="header">Tipo de Recurso usado</f:facet>
+								#{saidaFinanceira.recurso.nome}
+						</p:column>
+
+							<p:column>
+								<f:facet name="header">Fornecedor</f:facet>
+								#{saidaFinanceira.fornecedor.nome}
+						</p:column>
+
+
+						</p:dataTable>
+					</p:panel>
+
+				</h:form>
+			</center>
+		</f:view>
+
+	</ui:define>
+</ui:composition>

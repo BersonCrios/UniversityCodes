@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<title>Gestor de Finaças Eclesiástico</title>
+
+	<link rel="icon" href="../resources/images/LogoGFE.png" />
+
+	<h:outputStylesheet name="estilo.css" />
+
+	<h:outputStylesheet library="awesome" name="css/font-awesome.css" />
+	<h:outputStylesheet library="webjars/font-awesome/4.7.0/css"
+		name="font-awesome.min-jsf.css" />
+
+</h:head>
+
+<h:body styleClass="bodypf">
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+		<p:graphicImage name="/images/carrega.gif" />
+	</p:dialog>
+
+	<!-- ONDE VAI ENTRAR TODO LAYOUT DO SISTEMAS -->
+	<p:layout fullPage="true">
+		<!--UNIDADE DE LAYOUT QUE FICARA NA POSIÇÃO "NORTE" DA PÁGINA, ONDE SERÁ INSERIDO O MENU E LOGO  -->
+		<div class="topo-geral">
+			<div class="ui-g topo">
+				<div class="ui-g-2">
+					<p:graphicImage library="images" name="LogoGFE.png"
+						alt="Logo do sistema GFE" height="50px" />
+				</div>
+				<div class="ui-g-8">
+					 <ui:include src="menu.xhtml" /> 
+				</div>
+				<div class="ui-g-2">
+					<h:form>
+						<p:menubar>
+
+							<p:submenu label="#{usuarioController.usuarioLogado.nome}">
+								<p:menuitem title="Perfil" action="/restrito/perfil.xhtml"
+									value="Perfil" icon=" fa fa-id-card" />
+
+								<p:menuitem title="Redefinir Senha" action="/restrito/mudarSenha.xhtml"
+									value="Redefinir Senha" icon=" fa fa-key" />
+
+								<p:separator />
+
+								<p:menuitem
+									onclick="document.location='#{request.contextPath}/j_spring_security_logout'"
+									title="Sair" value="Sair" icon="fa fa-sign-out" />
+									
+								<p:menuitem title="Entre em Contato" action="/restrito/EnviarEmail.xhtml"
+									value="Entrar em contato" icon="fa fa-envelope" />	
+
+							</p:submenu>
+
+
+						</p:menubar>
+
+					</h:form>
+
+				</div>
+			</div>
+		</div>
+
+
+		<!-- UNIDADE DE LAYOUT QUE FICARÁ NA POSIÇÃO CENTRAL DA PÁGINA-->
+		<p:layoutUnit position="center">
+			<!-- CHAMANDO O CONTEÚDO -->
+			<ui:insert name="conteudo" />
+		</p:layoutUnit>
+
+
+
+		<!-- UNIDADE DE LAYOUT QUE FICARÁ NA POSIÇÃO INFERIOR DA PÁGINA OU "SUL", ONDE FICARÁ O RODAPÉ -->
+		<p:layoutUnit position="south" styleClass="rodape">
+			<p class="rodape-text">2017 © IGREJA PRESBITERIANA DO BRASIL.
+				Todos os direitos reservados</p>
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
+</html>

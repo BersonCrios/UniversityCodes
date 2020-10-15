@@ -1,0 +1,7 @@
+{
+  "name": "GameXerente",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

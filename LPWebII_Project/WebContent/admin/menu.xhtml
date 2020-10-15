@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<div class="menu">
+		<h:form>
+			 <p:menubar>
+				<p:menuitem value="Dashboard" ajax="false"
+					url="/restrito/dashboard.xhtml" icon="fa fa-home" />
+
+				<p:menuitem value="Fornecedor"  ajax="false"
+					url="/admin/Fornecedor.xhtml" icon="fa fa-shopping-cart" />
+
+				<p:menuitem value="Membro" ajax="false"
+					url="/admin/Membro.xhtml" icon="fa fa-users" />
+
+				<p:menuitem value="Usuário" ajax="false"
+					url="/admin/Usuario.xhtml" icon="fa fa-address-card" />
+
+				<p:submenu label="Relatórios" icon="fa fa-folder-open">
+					<p:menuitem value="Entrada Financeira" icon="fa fa-file-text" url="/restrito/relatorioEntradaFinanceira.xhtml" />
+					<p:menuitem value="Saida Financeira" icon="fa fa-file-text" url="/restrito/relatorioSaidaFinanceira.xhtml"/>
+				</p:submenu>
+
+				<p:submenu label="Opções de Caixa" icon="fa fa-line-chart">
+					<p:menuitem value="Entradas" ajax="false" icon="fa fa-level-down"
+						url="/admin/EntradaFinanceira.xhtml" />
+					<p:menuitem value="Saídas" icon="fa fa-level-up"
+						url="/admin/SaidaFinanceira.xhtml"  />
+				</p:submenu>
+
+			 </p:menubar>
+
+		</h:form>
+	</div>
+
+
+
+
+
+</ui:composition>

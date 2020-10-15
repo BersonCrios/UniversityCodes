@@ -1,0 +1,22 @@
+<ion-header>
+</ion-header>
+<ion-content padding>
+    <ion-card>
+        <ion-card-header>
+            <p *ngIf="pontuacao > 1" class="pontuacao">{{pontuacao}} Pontos</p>
+            <p *ngIf="pontuacao == 1" class="pontuacao">{{pontuacao}} Ponto</p>
+            <p *ngIf="pontuacao == 0" class="pontuacao">{{pontuacao}} Pontos</p>
+
+            <p *ngIf="vidas > 1" class="vida">{{vidas}} Vidas</p>
+            <p *ngIf="vidas == 1" class="vida">{{vidas}} vida</p>
+            <p *ngIf="vidas == 0" class="vida">{{vidas}} vidas</p>
+          </ion-card-header>
+          <ion-img width="80" height="80" src="{{imagem}}"></ion-img>
+
+          <ion-input type="text" placeholder="Qual a letra acima ?" data-ls-module="charCounter"
+              [(ngModel)]="entradaDoUsuario">
+          </ion-input>
+
+          <button ion-button block (click)=chuta() class="botaoChute">Chutar</button>
+    </ion-card>
+</ion-content>
